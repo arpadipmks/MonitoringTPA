@@ -594,3 +594,17 @@ tbody td {
   .form-grid { grid-template-columns: 1fr; }
   .login-card { padding: 28px 20px; }
 }
+
+.btn-hapus{
+    background:#dc2626;
+    color:white;
+    padding:7px 12px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.btn-hapus:hover{
+    background:#b91c1c;
+}

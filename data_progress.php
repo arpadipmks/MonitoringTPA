@@ -95,6 +95,7 @@ function badgeGrade($grade) {
                                     <th>Skor</th>
                                     <th>Grade</th>
                                     <th>Catatan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,6 +116,13 @@ function badgeGrade($grade) {
                                     <td><strong><?= $data['skor'] ?></strong></td>
                                     <td><?= badgeGrade($data['grade']) ?></td>
                                     <td style="color:#8a93a8; font-size:13px;"><?= htmlspecialchars($data['catatan']) ?></td>
+                                    <td>
+                                        <a href="hapus_progress.php?id=<?= $data['id_progress'] ?>"
+                                        class="btn-hapus"
+                                        onclick="return confirm('Yakin ingin menghapus progress ini?')">
+                                        Hapus
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php endwhile; endif; ?>
                             </tbody>
