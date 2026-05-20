@@ -4,6 +4,18 @@ if (!isset($_SESSION['id_guru'])) { header("Location: login.php"); exit(); }
 
 require_once 'config/koneksi.php';
 
+if(isset($_GET['hapus'])){
+
+    $id = intval($_GET['hapus']);
+
+    mysqli_query($koneksi,
+        "DELETE FROM progress_belajar
+         WHERE id_progress='$id'");
+
+    header("Location: data_progress.php");
+    exit;
+}
+
 $nama    = $_SESSION['nama'];
 $inisial = strtoupper(substr($nama, 0, 1));
 
@@ -101,7 +113,7 @@ function badgeGrade($grade) {
                             <tbody>
                             <?php if (mysqli_num_rows($query) === 0): ?>
                                 <tr>
-                                    <td colspan="8" style="text-align:center; color:#8a93a8; padding:32px;">
+                                    <td colspan="9" style="text-align:center; color:#8a93a8; padding:32px;">
                                         Belum ada data progress.
                                         <a href="tambah_progress.php" style="color:#2563a8;">Tambah sekarang &rarr;</a>
                                     </td>
@@ -117,7 +129,7 @@ function badgeGrade($grade) {
                                     <td><?= badgeGrade($data['grade']) ?></td>
                                     <td style="color:#8a93a8; font-size:13px;"><?= htmlspecialchars($data['catatan']) ?></td>
                                     <td>
-                                        <a href="hapus_progress.php?id=<?= $data['id_progress'] ?>"
+                                        <a href="data_progress.php?hapus=<?= $data['id_progress'] ?>"
                                         class="btn-hapus"
                                         onclick="return confirm('Yakin ingin menghapus progress ini?')">
                                         Hapus

@@ -4,6 +4,18 @@ if (!isset($_SESSION['id_guru'])) { header("Location: login.php"); exit(); }
 
 require_once 'config/koneksi.php';
 
+if(isset($_GET['hapus'])){
+
+    $id = intval($_GET['hapus']);
+
+    mysqli_query($koneksi,
+        "DELETE FROM siswa
+         WHERE id_siswa='$id'");
+
+    header("Location: data_siswa.php");
+    exit;
+}
+
 $nama    = $_SESSION['nama'];
 $inisial = strtoupper(substr($nama, 0, 1));
 
@@ -157,7 +169,7 @@ $success        = isset($_GET['success']);
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="hapus_siswa.php?id=<?= $s['id_siswa'] ?>"
+                                        <a href="data_siswa.php?hapus=<?= $s['id_siswa'] ?>"
                                            onclick="return confirm('Yakin hapus santri <?= htmlspecialchars(addslashes($s['nama'])) ?>?')"
                                            class="btn-danger">&#10006; Hapus</a>
                                     </td>
